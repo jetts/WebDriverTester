@@ -49,6 +49,7 @@
                 <a onclick="quickCommand('get')">get</a> 
                 <a onclick="quickCommand('findElement')">findElement</a>
                 <a onclick="quickCommand('screenshot')">screenshot</a>
+                <a onclick="quickCommand('moveto')">moveto</a>
             </p>
             <p>Command: <select id="commands-select" onchange="updateCommand()"></select></p>
             <p>Method: <select id="methods-select"></select></p>
@@ -76,7 +77,7 @@
     <div id="log-div" class="container">
         <h2>Log</h2>  
         <button onclick="clearLog()">Clear Log</button>
-        <button onclick="clearSessionsAndElements()">Clear Ids</button>
+        <button onclick="clearElements()">Clear Element Ids</button>
         <button onclick="clearAll()">Clear All</button>
         <div id="log-contents"></div>          
     </div><!-- /.container -->

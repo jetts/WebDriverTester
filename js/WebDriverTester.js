@@ -177,13 +177,12 @@ function clearLog() {
     document.getElementById("log-contents").innerHTML = "";
 }
 
-function clearSessionsAndElements() {
-    document.getElementById("session-select").innerHTML = "";
+function clearElements() {
     document.getElementById("element-select").innerHTML = "";
 }
 
 function clearAll() {
-    clearSessionsAndElements();
+    clearElements();
     clearLog();
 }
 
@@ -225,15 +224,24 @@ function processResponse(xmlhttp) {
                     addSessionId(sessionId);
                 }
             }
-            if (lastCommandSent == "findElement")
+            else if (lastCommandSent == "findElement" 
+			|| lastCommandSent == "findElementFrom" 
+			|| lastCommandSent == "getActiveElement")
             {
-                var elementId = jsonObj.value.id;
+                var elementId = jsonObj.value.ELEMENT;
                 if (elementId != "")
                 {
                     addElementId(elementId);
                 }
-                
             }
+			else if (lastCommandSent == "findElements" || lastCommandSent == "findElementsFrom")
+			{
+				var elemArray = jsonObj.value;
+				for (var i = 0; i < elemArray.length; i++)
+				{
+					addElementId(elemArray[i].ELEMENT);
+				}
+			}
             lastCommandSent = "";
         }
         catch (err)
