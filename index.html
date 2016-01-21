@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -11,68 +10,120 @@
 	<link rel="stylesheet" type="text/css" href="https://edgeportal.blob.core.windows.net/media/demotemplate.css"/>
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 </head>
-
-<body onload="setup()">
-
-    <!-- Header -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">WebDriver Tester</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Send Requests</a></li>
-                    <li><a href="Info.html">Info</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-
-    <!-- Request Info Contents -->
-    <div class="container">
-        <div class="request-info">
-            <h2>Request</h2>
-            <p>To send a request to Edge, specify a port and a command. Modify the command if needed and hit the "Send Request" button.</p>
-            <p>URL or IP (if left blank will use "http://localhost"): <input id="host" type="text" name="host"></p>
-            <p>Port: <input id="port" type="text" name="port" value="17556"></p>
-            <p>Quick commands: 
-                <a onclick="quickCommand('get')">get</a> 
-                <a onclick="quickCommand('findElement')">findElement</a>
-                <a onclick="quickCommand('screenshot')">screenshot</a>
-                <a onclick="quickCommand('moveto')">moveto</a>
-            </p>
-            <p>Command: <select id="commands-select" onchange="updateCommand()"></select></p>
-            <p>Method: <select id="methods-select"></select></p>
-            <p>Path: <input id="path" type="text"></p>
-
-            <p>Content Type:
-                <select id="content-type-select">
-                    <option value="ct-json">application/json;charset=UTF-8</option>
-                    <option value="ct-plain">text/plain</option>
-                </select>
-            </p>
-
-            <p>Content
-                <button id="format-json" onclick="formatJSON()">Format JSON</button>
-                <button onclick="sendRequest()">Send Request</button>
-                <br>
-            </p>
-            <textarea id="content-area"></textarea><br>
-            <p>Sessions <select onchange="updateCommand()" class="guid-select" id="session-select"></select></p>
-            <p>Elements <select onchange="updateCommand()" class="guid-select" id="element-select"></select></p>
-        </div>
-    </div><!-- /.container -->
-
-    <!-- Log -->
-    <div id="log-div" class="container">
-        <h2>Log</h2>  
-        <button onclick="clearLog()">Clear Log</button>
-        <button onclick="clearElements()">Clear Element Ids</button>
-        <button onclick="clearAll()">Clear All</button>
-        <div id="log-contents"></div>          
-    </div><!-- /.container -->
-
-    <script src="sctips/main.js"></script>
+<body>
+	<article class="content content--testdrive content--demo">
+		<header class="section section--page-intro demo__header">
+			<div class="container">
+				<div class="section__header">
+					<h1>Learn how to use WebDriver</h1>
+				</div>
+				<div class="section__body">
+					<div class="layout layout--halves">
+						<div class="module module--tutorials-aside">
+							<p>
+								WebDriver is an emerging <a href="https://w3c.github.io/webdriver/webdriver-spec.html">W3C standard</a> through which web developers can write tests to automate
+								testing their sites through web browsers. This demo page will show you how to use a number of WebDriver commands implemented in Microsoft Edge. The full list of
+								commands implemented in Microsoft Edge can be found <a href="http://dev.modern.ie/platform/status/webdriver/details/">here</a>.
+							</p>
+						</div>
+						<div class="module">
+							<p>
+								Before trying the demo, please make sure you have installed Microsoft WebDriver server from <a href="http://www.microsoft.com/en-us/download/details.aspx?id=48212">Microsoft Download Center</a>. After it is installed, start
+								up the Microsoft WebDriver server by running the executable. Since you will be driving Microsoft Edge, we recommend running this demo in another browser. You're set
+								to start sending some commands!
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="demo__content">
+			<section role="region" class="section">
+				<div class="container">
+					<header class="section__header section__header--alt">
+						<h2>WebDriver Command</h2>
+					</header>
+					<div class="section__body">
+						<div class="subsection">
+							<div class="subsection__header">
+								<h3>Send Request</h3>
+							</div>
+							<div class="subsection__body">
+                                <h4>Host</h4>
+                                <div class="layout layout--halves">
+                                    <div class="module module--tutorial-aside">
+                                        <p>The host to send the command to.</p>
+                                    </div>
+                                    <div class="module">
+                                        <input id="host" type="text" name="host" value="http://localhost">
+                                    </div>    
+                                </div>
+                                <h4>Port</h4>
+                                <div class="layout layout--halves">
+                                    <div class="module module--tutorial-aside">
+                                        <p>The port to send the command to.</p>
+                                    </div>
+                                    <div class="module">
+                                        <input id="port" type="text" name="port" value="17556">
+                                    </div>    
+                                </div>
+								<h4>Command</h4>
+								<div class="layout layout--halves">
+									<div class="module module--tutorial-aside">
+										<p>The command to be sent to Microsoft Edge and control the browser. Below you'll find a dropdown of a few sample commands to play around with.</p>
+									</div>
+									<div class="module">
+										<select id="commands-select"></select>
+										<p id="command-description"></p>
+									</div>
+								</div>
+								<h4>Method</h4>
+								<div class="layout layout--halves">
+									<div class="module module--tutorial-aside">
+										<p>The HTTP method used for each command. Every command will either be a GET, POST or DELETE.</p>
+									</div>
+									<div class="module">
+										<select id="methods-select"></select>
+									</div>
+								</div>
+								<h4>Path</h4>
+								<div class="layout layout--halves">
+									<div class="module module--tutorial-aside">
+										<p>The path of the command selected. This is used by Microsoft WebDriver to determine the command. Any commands not in the supported commands list will get a "command not implemented" error response.</p>
+									</div>
+									<div class="module">
+										<input id="path" type="text" name="path" value="">
+									</div>
+								</div>
+								<h4>Request Body</h4>
+								<div class="layout layout--halves">
+									<div class="module module--tutorial-aside">
+										<p>This is the body of the request being sent to the Microsoft WebDriver server. Some commands will have values that you can add here, others do not require a request body.</p>
+									</div>
+									<div class="module">
+										<textarea id="content-area"></textarea>
+									</div>
+								</div>
+								<button id="send-request" class="button button--primary button--page-primary">Send Request</button>
+							</div>
+						</div>
+						<div class="subsection">
+							<header class="subsection__header">
+								<h3>Server Log</h3>
+							</header>
+							<div class="subsection__body">
+								<div class="actions">
+									<button id="clear-log" class="button">Clear Log</button>
+							        <button id="clear-all" class="button">Clear All</button>
+								</div>
+							    <div id="log-contents"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+	<script type="text/javascript" src="scripts/main.js"></script>
 </body>
 </html>
