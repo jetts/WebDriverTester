@@ -149,7 +149,7 @@
                 document.getElementById('methods-select').value = commands[i].method;
                 document.getElementById('path').value = checkForIds(commands[i].path);
                 document.getElementById('command-description').innerText = commands[i].description;
-    
+
                 if (commands[i].requestBody !== '') {
                     try {
                         var jsonObj = JSON.parse(commands[i].requestBody);

@@ -4,19 +4,19 @@
 }
 
 .webdriver--response {
-    background: #def8f3;
+	background: #def8f3;
 }
 
 #content-area {
-    height: 175px;
+	height: 175px;
 }
 
 #command-description {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 @media (min-width: 33.75em) {
-    .module--tutorial-aside {
-        float: right;
-    }
+	.module--tutorial-aside {
+		float: right;
+	}
 }
