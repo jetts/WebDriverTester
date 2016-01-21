@@ -490,7 +490,7 @@
 			commandTitle: 'Set Local Storage Key',
 			method: 'POST',
 			path: '/session/SESSION_ID/local_storage',
-			requestBody: '{key: \"a\", value: \"b\"}',
+			requestBody: '{\"key\": \"a\", \"value\": \"b\"}',
 			description: 'JSON Wire Protocol: Set the storage item for the given key.'
 		},
 		{
@@ -498,7 +498,7 @@
 			commandTitle: 'Set Session Storage Key',
 			method: 'POST',
 			path: '/session/SESSION_ID/session_storage',
-			requestBody: '{key: \"a\", value: \"b\"}',
+			requestBody: '{\"key\": \"a\", \"value\": \"b\"}',
 			description: 'JSON Wire Protocol: Set the storage item for the given key.'
 		},
 		{
