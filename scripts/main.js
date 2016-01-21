@@ -11,7 +11,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/accept_alert', // /session/{session id}/alert/accept
 			requestBody: '',
-			description: 'The Accept Alert command accepts a simple dialogue if present.'
+			description: 'W3C: The Accept Alert command accepts a simple dialogue if present.'
 		},
 		{
 			commandName: 'addCookie',
@@ -19,7 +19,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/cookie',
 			requestBody: '\"cookie\":{\"name\":\"\", \"value\":\"\"}}',
-			description: 'The Add Cookie command adds a single cookie to the cookie store associated with the active document\'s address'
+			description: 'W3C: The Add Cookie command adds a single cookie to the cookie store associated with the active document\'s address'
 		},
 		{
 			commandName: 'clear',
@@ -27,7 +27,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/element/ELEMENT_ID/clear',
 			requestBody: '',
-			description: 'The Element Clear command scrolls into view a submittable element excluding buttons or editable elements, and then attempts to clear its value, checkedness, or text content.'
+			description: 'W3C: The Element Clear command scrolls into view a submittable element excluding buttons or editable elements, and then attempts to clear its value, checkedness, or text content.'
 		},
 		{
 			commandName: 'click',
@@ -35,7 +35,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/element/ELEMENT_ID/click',
 			requestBody: '',
-			description: 'The Element Click command scrolls into view the element and then attempts to click the center of its visible area. In case the element is not displayed, an element not visible error is returned.'
+			description: 'W3C: The Element Click command scrolls into view the element and then attempts to click the center of its visible area. In case the element is not displayed, an element not visible error is returned.'
 		},
 		{
 			commandName: 'deleteCookie',
@@ -43,7 +43,7 @@
 			method: 'DELETE',
 			path: '/session/SESSION_ID/cookie/name',
 			requestBody: '',
-			description: 'The Delete Cookie command allows you to delete either a single cookie by parameter name, or all the cookies associated with the active document\'s address if name is undefined.'
+			description: 'W3C: The Delete Cookie command allows you to delete either a single cookie by parameter name, or all the cookies associated with the active document\'s address if name is undefined.'
 		},
 		{
 			commandName: 'deleteCookies',
@@ -51,15 +51,15 @@
 			method: 'DELETE',
 			path: '/session/SESSION_ID/cookie',
 			requestBody: '',
-			description: 'The Delete All Cookies command allows deletion of all cookies associated with the active documen\'s address'
+			description: 'W3C: The Delete All Cookies command allows deletion of all cookies associated with the active documen\'s address'
 		},
 		{
 			commandName: 'deleteLocalStorage',
-			commandtitle: 'Delete Local Storage',
+			commandTitle: 'Delete Local Storage',
 			method: 'DELETE',
 			path: '/session/SESSION_ID/local_storage',
 			requestBody: '',
-			description: 'Clear the storage.'
+			description: 'JSON Wire Protocol: Clear the storage.'
 		},
 		{
 			commandName: 'deleteLocalStorageKey',
@@ -67,7 +67,7 @@
 			method: 'DELETE',
 			path: '/session/SESSION_ID/session_storage/key/KEY_ID', // TODO: Add support for KEY_ID replacement
 			requestBody: '',
-			description: 'Remove the storage item for the given key.'
+			description: 'JSON Wire Protocol: Remove the storage item for the given key.'
 		},
 		{
 			commandName: 'deleteSessionStorage',
@@ -75,15 +75,15 @@
 			method: 'DELETE',
 			path: '/session/SESSION_ID/session_storage',
 			requestBody: '',
-			description: 'Clear the storage.'
+			description: 'JSON Wire Protocol: Clear the storage.'
 		},
 		{
 			commandName: 'deleteSessionStorageKey',
-			commandtitle: 'Delete Session Storage Key',
+			commandTitle: 'Delete Session Storage Key',
 			method: 'DELETE',
 			path: '/session/SESSION_ID/session_storage/KEY_ID',
 			requestBody: '',
-			description: 'Remove the storage item for the given key.'
+			description: 'JSON Wire Protocol: Remove the storage item for the given key.'
 		},
 		{
 			commandName: 'dismissAlert',
@@ -91,7 +91,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/dismiss_alert', // /session/{session id}/alert/dismiss
 			requestBody: '',
-			description: 'The Dismiss Alert command dismisses a simple dialogue if present. A request to dismiss an alert user prompt, which may not necessarily have a dismiss button, has the same effect as accepting it.'
+			description: 'W3C: The Dismiss Alert command dismisses a simple dialogue if present. A request to dismiss an alert user prompt, which may not necessarily have a dismiss button, has the same effect as accepting it.'
 		},
 		{
 			commandName: 'executeScript',
@@ -99,7 +99,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/execute', // /session/{session id}/execute/sync
 			requestBody: '{\"script\": \"\",\"args\": []}',
-			description: 'The Execute Script command executes a JavaScript function in the context of the current browsing context and returns the return value of the function.'
+			description: 'W3C: The Execute Script command executes a JavaScript function in the context of the current browsing context and returns the return value of the function.'
 		},
 		{
 			commandName: 'executeAsyncScript',
@@ -107,7 +107,7 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/execute_async', // /session/{session id}/execute/async
 			requestBody: '{\"script\": \"arguments[1]([ document.getElementsByTagName(\'div\'), 1, \'fancy string\', 1.2, {objProp: 3}]);\",\"args\": [{\"first\":\"1st\", \"second\":\"2nd\", \"third\":\"3rd\"}]}',
-			description: 'The Execute Async Script command causes JavaScript to execute as an anonymous function. Unlike the Execute Script command, the result of the function is ignored. Instead an additional argument is provided as the final argument to the function. This is a function that, when called, returns its first argument as the response.'
+			description: 'W3C: The Execute Async Script command causes JavaScript to execute as an anonymous function. Unlike the Execute Script command, the result of the function is ignored. Instead an additional argument is provided as the final argument to the function. This is a function that, when called, returns its first argument as the response.'
 		},
 		{
 			commandName: 'findElement',
@@ -115,24 +115,88 @@
 			method: 'POST',
 			path: '/session/SESSION_ID/element',
 			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
-			description: 'Search for an element on the page, starting from the document root. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
+			description: 'JSON Wire Protocol: Search for an element on the page, starting from the document root. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
 		},
 		{
-			commandName: 'findElementFrom',
-			commandTitle: 'Find Element From',
+			commandName: 'findElementFromElement',
+			commandTitle: 'Find Element From Element',
 			method: 'POST',
 			path: '/session/SESSION_ID/element/ELEMENT_ID/element',
 			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
-			description: 'Search for an element on the page, starting from the identified element. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
+			description: 'JSON Wire Protocol: Search for an element on the page, starting from the identified element. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
 		},
-        {
-            commandName: 'get',
-            commandTitle: 'Navigate to URL',
-            method: 'POST',
-            path: '/session/SESSION_ID/url',
-            requestBody: '{\"url\":\"https://www.bing.com/\"}',
-            description: 'Navigates to the specified url.'
-        },
+		{
+			commandName: 'findElements',
+			commandTitle: 'Find Elements',
+			method: 'POST',
+			path: '/session/SESSION_ID/elements',
+			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
+			description: 'JSON Wire Protocol: Search for multiple elements on the page, starting from the document root. The located elements will be returned as a WebElement JSON objects. The table below lists the locator strategies that each server should support. Elements should be returned in the order located in the DOM.'
+		},
+		{
+			commandName: 'findElementsFromElement',
+			commandTitle: 'Find Elements From Element',
+			method: 'POST',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/elements',
+			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
+			description: 'JSON Wire Protocol: Search for multiple elements on the page, starting from the identified element. The located elements will be returned as a WebElement JSON objects. The table below lists the locator strategies that each server should support. Elements should be returned in the order located in the DOM.'
+		},
+		{
+			commandName: 'get',
+			commandTitle: 'Get',
+			method: 'POST',
+			path: '/session/SESSION_ID/url',
+			requestBody: '{\"url\":\"\"}',
+			description: 'W3C: The Get command is used to cause the user agent to navigate the current top-level browsing context to a new location. From a user\'s point of view, it is as if they have entered a URL into the address bar of the browser\'s chrome.'
+		},
+		{
+			commandName: 'getActiveElement',
+			commandTitle: 'Get Active Element',
+			method: 'GET',
+			path: '/session/SESSION_ID/element/active',
+			requestBody: '',
+			description: 'W3C: The Get Active Element command returns the active element of the current browsing context\'s document element.'
+		},
+		{
+			commandName: 'getAlertText',
+			commandTitle: 'Get Alert Text',
+			method: 'GET',
+			path: '/session/SESSION_ID/alert_text', // /session/{session id}/alert/text
+			requestBody: '',
+			description: 'W3C: The Get Alert Text command returns the message of the current user prompt. If there is no user prompt, it returns with null.'
+		},
+		{
+			commandName: 'getCapabilities',
+			commandTitle: 'Get Capabilities',
+			method: 'GET',
+			path: '/session/SESSION_ID',
+			requestBody: '',
+			description: 'JSON Wire Protocol: Retrieve the capabilities of the specified session.'
+		},
+		{
+			commandName: 'getCookie',
+			commandtitle: 'Get Cookie',
+			method: 'GET',
+			path: '/session/SESSION_ID/cookie/name',
+			requestBody: '',
+			description: 'W3C: The Get Cookie command returns all cookies associated with the address of the current browsing context’s active document.'
+		},
+		{
+			commandName: 'Get All Cookies',
+			commandTitle: 'Get All Cookies',
+			method: 'GET',
+			path: '/session/SESSION_ID/cookie',
+			requestBody: '',
+			description: 'JSON Wire Protocol: Retrieve all cookies visible to the current page.'
+		},
+		{
+			commandName: 'getElementCssValue',
+			commandTitle: 'Get Element CSS Value',
+			method: 'GET',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/css/propertyName',
+			requestBody: '',
+			description: 'W3C: The Get Element CSS Value command retrieves the computed value of the given CSS property of the given web element.'
+		},
         {
             commandName: 'getElementAttribute',
             commandTitle: 'Get Element Attribute',
