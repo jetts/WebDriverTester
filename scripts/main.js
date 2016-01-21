@@ -22,6 +22,14 @@
 			description: 'W3C: The Add Cookie command adds a single cookie to the cookie store associated with the active document\'s address'
 		},
 		{
+			commandName: 'back',
+			commandTitle: 'Back',
+			method: 'POST',
+			path: '/session/SESSION_ID/back',
+			requestBody: '',
+			description: 'W3C: The Back command causes the browser to traverse one step backward in the joint session history of the current top-level browsing context. This is equivalent to pressing the back button in the browser chrome or calling window.history.back.'
+		},
+		{
 			commandName: 'clear',
 			commandTitle: 'Element Clear',
 			method: 'POST',
@@ -142,6 +150,14 @@
 			description: 'JSON Wire Protocol: Search for multiple elements on the page, starting from the identified element. The located elements will be returned as a WebElement JSON objects. The table below lists the locator strategies that each server should support. Elements should be returned in the order located in the DOM.'
 		},
 		{
+			commandName: 'forward',
+			commandTitle: 'Forward',
+			method: 'POST',
+			path: '/session/SESSION_ID/forward',
+			requestBody: '',
+			description: 'W3C: The Forward command causes the browser to traverse one step forwards in the joint session history of the current top-level browsing context.'
+		},
+		{
 			commandName: 'get',
 			commandTitle: 'Get',
 			method: 'POST',
@@ -175,7 +191,7 @@
 		},
 		{
 			commandName: 'getCookie',
-			commandtitle: 'Get Cookie',
+			commandTitle: 'Get Cookie',
 			method: 'GET',
 			path: '/session/SESSION_ID/cookie/name',
 			requestBody: '',
@@ -361,7 +377,7 @@
 			commandName: 'getWindowPosition',
 			commandTitle: 'Get Window Position',
 			method: 'GET',
-			path: '/session/SESSION_ID/window/WINDOW_ID/position',
+			path: '/session/SESSION_ID/window/current/position',
 			requestBody: '',
 			description: 'JSON Wire Protocol: Get the position of the specified window. If the :windowHandle URL parameter is "current", the position of the currently active window will be returned.'
 		},
@@ -369,7 +385,7 @@
 			commandName: 'getWindowSize',
 			commandTitle: 'Get Window Size',
 			method: 'GET',
-			path: '/session/SESSION_ID/window/WINDOW_ID/size',
+			path: '/session/SESSION_ID/window/current/size',
 			requestBody: '',
 			description: 'JSON Wire Protocol: Get the size of the specified window. If the :windowHandle URL parameter is "current", the size of the currently active window will be returned.'
 		},
@@ -401,7 +417,7 @@
 			commandName: 'maximizeWindow',
 			commandTitle: 'Maximize Window',
 			method: 'POST',
-			path: '/session/SESSION_ID/window/WINDOW_ID/maximize',
+			path: '/session/SESSION_ID/window/current/maximize',
 			requestBody: '',
 			description: 'JSON Wire Protocol: Maximize the specified window if not already maximized. If the :windowHandle URL parameter is "current", the currently active window will be maximized.'
 		},
@@ -437,6 +453,14 @@
             requestBody: '',
             description: 'W3C: The Take Screenshot command takes a screenshot of the top-level browsing context’s viewport.'
         },
+		{
+			commandName: 'refresh',
+			commandTitle: 'Refresh',
+			method: 'POST',
+			path: '/session/SESSION_ID/refresh',
+			requestBody: '',
+			description: 'W3C: The Refresh command causes the browser to reload the page in in current top-level browsing context.'
+		},
         {
             commandName: 'sendKeys',
             commandTitle: 'Send Keys',
@@ -461,6 +485,78 @@
 			requestBody: '',
 			description: 'JSON Wire Protocol: Returns a list of the currently active sessions.'
 		},
+		{
+			commandName: 'setLocalStorageKey',
+			commandTitle: 'Set Local Storage Key',
+			method: 'POST',
+			path: '/session/SESSION_ID/local_storage',
+			requestBody: '{key: \"a\", value: \"b\"}',
+			description: 'JSON Wire Protocol: Set the storage item for the given key.'
+		},
+		{
+			commandName: 'setSessionStorageKey',
+			commandTitle: 'Set Session Storage Key',
+			method: 'POST',
+			path: '/session/SESSION_ID/session_storage',
+			requestBody: '{key: \"a\", value: \"b\"}',
+			description: 'JSON Wire Protocol: Set the storage item for the given key.'
+		},
+		{
+			commandName: 'setWindowPosition',
+			commandTitle: 'Set Window Position',
+			method: 'POST',
+			path: '/session/SESSION_ID/window/current/position',
+			requestBody: '{\"x\": 100, \"y\": 100}',
+			description: 'JSON Wire Protocol: Change the position of the specified window. If the :windowHandle URL parameter is "current", the currently active window will be moved.'
+		},
+		{
+			commandName: 'setWindowSize',
+			commandTitle: 'Set Window Size',
+			method: 'POST',
+			path: '/session/SESSION_ID/window/current/size',
+			requestBody: '{\"width\": 500, \"height\": 500}',
+			description: 'JSON Wire Protocol: Change the size of the specified window. If the :windowHandle URL parameter is "current", the currently active window will be resized.'
+		},
+		{
+			commandName: 'switchToWindow',
+			commandTitle: 'Switch To Window',
+			method: 'POST',
+			path: '/session/SESSION_ID/window',
+			requestBody: '{\"handle\":\"\"}',
+			description: 'W3C: The Switch To Window command is used to select the current top-level browsing context for the current session, i.e. the one that will be used for processing commands.'
+		},
+		{
+			commandName: 'status',
+			commandTitle: 'Status',
+			method: 'GET',
+			path: '/status',
+			requestBody: '',
+			description: 'JSON Wire Protocol: Query the server\'s current status.'
+		},
+		{
+			commandName: 'submitForm',
+			commandTitle: 'Submit Form',
+			method: 'POST',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/submit',
+			requestBody: '',
+			description: 'JSON Wire Protocol: Submit a FORM element. The submit command may also be applied to any element that is a descendant of a FORM element.'
+		},
+		{
+			commandName: 'timeoutsImplicitWait',
+			commandTitle: 'Timeout Implicit Wait',
+			method: 'POST',
+			path: '/session/SESSION_ID/timeoutes/implicit_wait',
+			requestBody: '{\"ms\":5000}',
+			description: 'JSON Wire Protocol: Set the amount of time the driver should wait when searching for elements. When searching for a single element, the driver should poll the page until an element is found or the timeout expires, whichever occurs first. When searching for multiple elements, the driver should poll the page until at least one element is found or the timeout expires, at which point it should return an empty list.'
+		},
+		{
+			commandName: 'setTimeout',
+			commandTitle: 'Set Timeout',
+			method: 'POST',
+			path: '/session/SESSION_ID/timeouts',
+			requestBody: '{\"type\": \"script\", \"ms\": 30000 }',
+			description: 'The Set Timeout command sets timeouts associated with the current session. The timeouts that can be controlled are the session script timeout, the session page load timeout, and the session implicit wait timeout.'
+		}
     ];
     
     /* Helper Functions */
