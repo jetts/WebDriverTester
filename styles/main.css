@@ -1,18 +1,10 @@
-﻿.webdriver-response {
-    background-color: lightgreen;
-    border-color: green;
-    border-style: solid;
-    border-width: 1px;
-    font-weight: bold;
-}
-
-.webdriver--info, [class*="webdriver--"] {
+﻿.webdriver--info, [class*="webdriver--"] {
 	padding: 1.2rem;
-	background: #def8f3;
+	background: #FFE5B6;
 }
 
 .webdriver--response {
-    background: #FFE5B6;
+    background: #def8f3;
 }
 
 #content-area {
