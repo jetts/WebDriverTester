@@ -5,14 +5,54 @@
     var elementId;
     var lastCommandSent;
     var commands = [
+		{
+			commandName: 'acceptAlert',
+			commandTitle: 'Accept Alert',
+			method: 'POST',
+			path: '/session/SESSION_ID/accept_alert', // /session/{session id}/alert/accept
+			requestBody: '',
+			description: 'The Accept Alert command accepts a simple dialogue if present.'
+		},
+		{
+			commandName: 'addCookie',
+			commandTitle: 'Add Cookie',
+			method: 'POST',
+			path: '/session/SESSION_ID/cookie',
+			requestBody: '\"cookie\":{\"name\":\"\", \"value\":\"\"}}',
+			description: 'The Add Cookie command adds a single cookie to the cookie store associated with the active document\'s address'
+		},
+		{
+			commandName: 'clear',
+			commandTitle: 'Element Clear',
+			method: 'POST',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/clear',
+			requestBody: '',
+			description: 'The Element Clear command scrolls into view a submittable element excluding buttons or editable elements, and then attempts to clear its value, checkedness, or text content.'
+		},
         {
             commandName: 'click',
-            commandTitle: 'Click',
+            commandTitle: 'Element Click',
             method: 'POST',
             path: '/session/SESSION_ID/element/ELEMENT_ID/click',
             requestBody: '',
-            description: 'Clicks the specified element.'
+            description: 'The Element Click command scrolls into view the element and then attempts to click the center of its visible area. In case the element is not displayed, an element not visible error is returned.'
         },
+		{
+			commandName: 'deleteCookie',
+			commandTitle: 'Delete Cookie',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/cookie/name',
+			requestBody: '',
+			description: 'The Delete Cookie command allows you to delete either a single cookie by parameter name, or all the cookies associated with the active document\'s address if name is undefined.'
+		},
+		{
+			commandName: 'deleteCookies',
+			commandTitle: 'Delete All Cookies',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/cookie',
+			requestBody: '',
+			description: 'The Delete All Cookies command allows deletion of all cookies associated with the active documen\'s address'
+		},
         {
             commandName: 'executeScript',
             commandTitle: 'Execute JavaScript',
