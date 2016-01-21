@@ -1,10 +1,10 @@
 (function(){
-    'use strict';
-    
-    var sessionId;
-    var elementId;
-    var lastCommandSent;
-    var commands = [
+	'use strict';
+
+	var sessionId;
+	var elementId;
+	var lastCommandSent;
+	var commands = [
 		{
 			commandName: 'acceptAlert',
 			commandTitle: 'Accept Alert',
@@ -29,14 +29,14 @@
 			requestBody: '',
 			description: 'The Element Clear command scrolls into view a submittable element excluding buttons or editable elements, and then attempts to clear its value, checkedness, or text content.'
 		},
-        {
-            commandName: 'click',
-            commandTitle: 'Element Click',
-            method: 'POST',
-            path: '/session/SESSION_ID/element/ELEMENT_ID/click',
-            requestBody: '',
-            description: 'The Element Click command scrolls into view the element and then attempts to click the center of its visible area. In case the element is not displayed, an element not visible error is returned.'
-        },
+		{
+			commandName: 'click',
+			commandTitle: 'Element Click',
+			method: 'POST',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/click',
+			requestBody: '',
+			description: 'The Element Click command scrolls into view the element and then attempts to click the center of its visible area. In case the element is not displayed, an element not visible error is returned.'
+		},
 		{
 			commandName: 'deleteCookie',
 			commandTitle: 'Delete Cookie',
@@ -53,22 +53,78 @@
 			requestBody: '',
 			description: 'The Delete All Cookies command allows deletion of all cookies associated with the active documen\'s address'
 		},
-        {
-            commandName: 'executeScript',
-            commandTitle: 'Execute JavaScript',
-            method: 'POST',
-            path: '/session/SESSION_ID/execute',
-            requestBody: '{\"script\": \"alert(arguments[0].first);\",\"args\": [{\"first\":\"hey\"}]}',
-            description: 'Runs script on the page.'
-        },
-        {
-            commandName: 'findElement',
-            commandTitle: 'Find Element',
-            method: 'POST',
-            path: '/session/SESSION_ID/element',
-            requestBody: '{\"using\": \"id\",\"value\": \"sb_form_q\"}',
-            description: 'Finds an element on the page by its id.'
-        },
+		{
+			commandName: 'deleteLocalStorage',
+			commandtitle: 'Delete Local Storage',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/local_storage',
+			requestBody: '',
+			description: 'Clear the storage.'
+		},
+		{
+			commandName: 'deleteLocalStorageKey',
+			commandTitle: 'Delete Local Storage Key',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/session_storage/key/KEY_ID', // TODO: Add support for KEY_ID replacement
+			requestBody: '',
+			description: 'Remove the storage item for the given key.'
+		},
+		{
+			commandName: 'deleteSessionStorage',
+			commandTitle: 'Delete Session Storage',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/session_storage',
+			requestBody: '',
+			description: 'Clear the storage.'
+		},
+		{
+			commandName: 'deleteSessionStorageKey',
+			commandtitle: 'Delete Session Storage Key',
+			method: 'DELETE',
+			path: '/session/SESSION_ID/session_storage/KEY_ID',
+			requestBody: '',
+			description: 'Remove the storage item for the given key.'
+		},
+		{
+			commandName: 'dismissAlert',
+			commandTitle: 'Dismiss Alert',
+			method: 'POST',
+			path: '/session/SESSION_ID/dismiss_alert', // /session/{session id}/alert/dismiss
+			requestBody: '',
+			description: 'The Dismiss Alert command dismisses a simple dialogue if present. A request to dismiss an alert user prompt, which may not necessarily have a dismiss button, has the same effect as accepting it.'
+		},
+		{
+			commandName: 'executeScript',
+			commandTitle: 'Execute Script',
+			method: 'POST',
+			path: '/session/SESSION_ID/execute', // /session/{session id}/execute/sync
+			requestBody: '{\"script\": \"\",\"args\": []}',
+			description: 'The Execute Script command executes a JavaScript function in the context of the current browsing context and returns the return value of the function.'
+		},
+		{
+			commandName: 'executeAsyncScript',
+			commandTitle: 'Execute Async Script',
+			method: 'POST',
+			path: '/session/SESSION_ID/execute_async', // /session/{session id}/execute/async
+			requestBody: '{\"script\": \"arguments[1]([ document.getElementsByTagName(\'div\'), 1, \'fancy string\', 1.2, {objProp: 3}]);\",\"args\": [{\"first\":\"1st\", \"second\":\"2nd\", \"third\":\"3rd\"}]}',
+			description: 'The Execute Async Script command causes JavaScript to execute as an anonymous function. Unlike the Execute Script command, the result of the function is ignored. Instead an additional argument is provided as the final argument to the function. This is a function that, when called, returns its first argument as the response.'
+		},
+		{
+			commandName: 'findElement',
+			commandTitle: 'Find Element',
+			method: 'POST',
+			path: '/session/SESSION_ID/element',
+			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
+			description: 'Search for an element on the page, starting from the document root. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
+		},
+		{
+			commandName: 'findElementFrom',
+			commandTitle: 'Find Element From',
+			method: 'POST',
+			path: '/session/SESSION_ID/element/ELEMENT_ID/element',
+			requestBody: '{\"using\": \"id\",\"value\": \"\"}',
+			description: 'Search for an element on the page, starting from the identified element. The located element will be returned as a WebElement JSON object. The table below lists the locator strategies that each server should support. Each locator must return the first matching element located in the DOM.'
+		},
         {
             commandName: 'get',
             commandTitle: 'Navigate to URL',
