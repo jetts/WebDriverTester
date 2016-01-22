@@ -345,7 +345,7 @@
 			commandName: 'getSessionStorageKey',
 			commandTitle: 'Get Session Storage Key',
 			method: 'GET',
-			path: 'session/SESSION_ID/session_storage/key/KEY_ID',
+			path: '/session/SESSION_ID/session_storage/key/KEY_ID',
 			requestBody: '',
 			description: 'JSON Wire Protocol: Get the storage item for the given key.'
 		},
@@ -369,7 +369,7 @@
 			commandName: 'getWindowHandles',
 			commandTitle: 'Get Window Handles',
 			method: 'GET',
-			path: 'session/SESSION_ID/window_handles',
+			path: '/session/SESSION_ID/window_handles',
 			requestBody: '',
 			description: 'JSON Wire Protocol: Retrieve the list of all window handles available to the session.'
 		},
