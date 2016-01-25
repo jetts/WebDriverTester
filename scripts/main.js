@@ -517,6 +517,22 @@
 			requestBody: '{\"width\": 500, \"height\": 500}',
 			description: 'JSON Wire Protocol: Change the size of the specified window. If the :windowHandle URL parameter is "current", the currently active window will be resized.'
 		},
+        {
+            commandName: 'switchToFrame',
+            commandTitle: 'Switch To Frame',
+            method: 'POST',
+            path: '/session/SESSION_ID/frame',
+            requestBody: '{\"id\": 0}',
+            description: 'W3C: The Switch To Frame command is used to select the current top-level browsing context or a child browsing context of the current browsing context to use as the current browsing context for subsequent commands.'
+        },
+        {
+            commandName: 'switchToParentFrame',
+            commandtitle: 'Switch To Parent Frame',
+            method: 'POST',
+            path: '/session/SESSION_ID/frame/parent',
+            requestBody: '',
+            description: 'The Switch to Parent Frame command sets the current browsing context for future commands to the parent of the current browsing context.'
+        },
 		{
 			commandName: 'switchToWindow',
 			commandTitle: 'Switch To Window',
